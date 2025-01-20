@@ -1,0 +1,37 @@
+{
+  "hash": "bdd2b496",
+  "configHash": "1ebd4da0",
+  "lockfileHash": "d920666e",
+  "browserHash": "e7c2e3e0",
+  "optimized": {
+    "@element-plus/icons-vue": {
+      "src": "../../../../../node_modules/@element-plus/icons-vue/dist/index.js",
+      "file": "@element-plus_icons-vue.js",
+      "fileHash": "39c3e2cc",
+      "needsInterop": false
+    },
+    "pinia-plugin-persistedstate": {
+      "src": "../../../../../node_modules/pinia-plugin-persistedstate/dist/index.js",
+      "file": "pinia-plugin-persistedstate.js",
+      "fileHash": "30c7d6d7",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../../../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "1cfcbe16",
+      "needsInterop": false
+    },
+    "@vueuse/core": {
+      "src": "../../../../../node_modules/@vueuse/core/index.mjs",
+      "file": "@vueuse_core.js",
+      "fileHash": "d6f16215",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-CSAU5B4Q": {
+      "file": "chunk-CSAU5B4Q.js"
+    }
+  }
+}
