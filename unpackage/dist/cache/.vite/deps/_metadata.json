@@ -1,31 +1,19 @@
 {
-  "hash": "bdd2b496",
-  "configHash": "1ebd4da0",
+  "hash": "326eaa05",
+  "configHash": "3f7f6e49",
   "lockfileHash": "d920666e",
-  "browserHash": "e7c2e3e0",
+  "browserHash": "550a913b",
   "optimized": {
-    "@element-plus/icons-vue": {
-      "src": "../../../../../node_modules/@element-plus/icons-vue/dist/index.js",
-      "file": "@element-plus_icons-vue.js",
-      "fileHash": "39c3e2cc",
+    "axios": {
+      "src": "../../../../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "d7265cb7",
       "needsInterop": false
     },
     "pinia-plugin-persistedstate": {
       "src": "../../../../../node_modules/pinia-plugin-persistedstate/dist/index.js",
       "file": "pinia-plugin-persistedstate.js",
-      "fileHash": "30c7d6d7",
-      "needsInterop": false
-    },
-    "axios": {
-      "src": "../../../../../node_modules/axios/index.js",
-      "file": "axios.js",
-      "fileHash": "1cfcbe16",
-      "needsInterop": false
-    },
-    "@vueuse/core": {
-      "src": "../../../../../node_modules/@vueuse/core/index.mjs",
-      "file": "@vueuse_core.js",
-      "fileHash": "d6f16215",
+      "fileHash": "12e886c7",
       "needsInterop": false
     }
   },

@@ -3,7 +3,11 @@
 		{
 			"path": "pages/main/index",
 			"style": {
-				"navigationBarTitleText": "首页"
+				"navigationBarTitleText": "首页",
+				"enablePullDownRefresh": true,
+				"backgroundTextStyle": "dark", // 下拉刷新时loading的样式，可选值为 'dark' 或 'light'
+				"backgroundColor": "#d9d9d9", // 下拉背景颜色
+				"navigationBarBackgroundColor": "#ffffff"
 			}
 		},
 		{
@@ -21,7 +25,11 @@
 		{
 			"path": "pages/cate/index",
 			"style": {
-				"navigationBarTitleText": "发现"
+				"navigationBarTitleText": "发现",
+				"enablePullDownRefresh": true,
+				"backgroundTextStyle": "dark", // 下拉刷新时loading的样式，可选值为 'dark' 或 'light'
+				"backgroundColor": "#d9d9d9", // 下拉背景颜色
+				"navigationBarBackgroundColor": "#ffffff"
 			}
 		},
 		{

@@ -21,7 +21,7 @@
 				<view class="decoration"></view>
 			</template>
 		</uni-section>
-		<productList :productTable="productTable"></productList>
+		<spProductList :productTable="productTable"></spProductList>
 	</div>
 
 
@@ -30,7 +30,9 @@
 <script setup>
 	import SvgIcon from '../../component/sp/SvgIcon'
 	import productList from '../../component/product/productList'
+	import spProductList from '../../component/product/spProductList'
 	import cateList from '/component/product/cateList.vue'
+	import { onPullDownRefresh } from '@dcloudio/uni-app'
 	import {
 		onMounted,
 		ref,
@@ -38,7 +40,8 @@
 	} from 'vue'
 	import {
 		getProduct,
-		getSwiper
+		getSwiper,
+		getSpProduct
 	} from '/api/product.js'
 
 	const input = ref('')
@@ -46,7 +49,7 @@
 	const swiperTable = ref([])
 
 	const getProductList = async () => {
-		const res = await getProduct()
+		const res = await getSpProduct()
 		//console.log(res)
 		productTable.value = res.data
 		//console.log('商品')
@@ -69,6 +72,19 @@
 			url: '/pages/shopping/store?product_id=' + id
 		})
 	}
+	
+	onPullDownRefresh(() => {
+	  // 模拟数据刷新
+	  setTimeout(() => {
+	    // 调用获取窗口数据的函数来刷新数据
+	    getProductList()
+	    getSwiperList()
+	    console.log('数据已刷新');
+	    // 停止下拉刷新动画
+	    uni.stopPullDownRefresh();
+	  }, 1000);
+	});
+	
 	onMounted(() => {
 		getProductList()
 		getSwiperList()
@@ -92,7 +108,6 @@
 		border-radius: 50%;
 		background-color: $uni-success;
 	}
-
 	.search-bar {
 		display: flex;
 		justify-content: center;

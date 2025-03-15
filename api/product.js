@@ -374,3 +374,26 @@ export const userClick  =async (data) => {
 	});
 	return res;
 }
+
+
+export const getSpProduct  =async () => {
+	const res = await new Promise((resolve, reject) => {
+	    uni.request({
+	        url: RDSip + '/product/getSpProduct',
+	        method: 'POST',
+	        data: {
+	            // 请求的数据
+	        },
+	        header: {
+	            'content-type': 'application/json'
+	        },
+	        success: function (res) {
+	            resolve(res);
+	        },
+	        fail: function (err) {
+	            reject(err);
+	        }
+	    });
+	});
+	return res;
+}

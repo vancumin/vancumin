@@ -569,6 +569,14 @@ image {
 .m_l_32 {
 	margin-left: 32rpx;
 }
+
+.m_l_24 {
+	margin-left: 24rpx;
+}
+
+.m_l_16 {
+	margin-left: 16rpx;
+}
 .m_b_24 {
 	margin-bottom: 24rpx;
 }

@@ -1,7 +1,8 @@
 <template>
 	<view class="flex flex-fww grid_box pos_r" style="margin-right: -1rpx;" :class="[bgc]">
 		<template v-for="(item , index) in columns">
-			<view @click="tabItem(item , index)" class="boxs_bb grid_item pos_r" :class="border ? 'grid_item_border' : ''" :style="{
+			<view @click="tabItem(item , index)" class="boxs_bb grid_item pos_r" :class="border ? 'grid_item_border' : ''" 
+			:style="{
 				width: `calc(100% / ${columnNum})`,
 				padding:columnPadding,
 				...columnStyle
