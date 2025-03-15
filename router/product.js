@@ -20,4 +20,7 @@ router.post('/getLoveProduct',productHandle.getLoveProduct)
 router.post('/cancelLoveProduct',productHandle.cancelLoveProduct)
 router.post('/addOverview',productHandle.addOverview)
 router.post('/userClick',productHandle.userClick)
+
+//根据输入的列表来算
+router.post('/getSpProduct',productHandle.getSpProduct)
 module.exports =router

@@ -120,7 +120,7 @@ exports.getProduct = (req, res) => {
 
 exports.getProductDetail = (req, res) => {
 	//image_url是一个列表放入所有图片
-	
+
 	//剩下属性从prouct表内获取
 	const sql =
 		"select user.account,user.avatar_url,product.* from user inner join product on user.user_id =product.user_id where product.product_id =?"
@@ -215,7 +215,7 @@ exports.cateProduct = (req, res) => {
 
 exports.loveProduct = (req, res) => {
 	//传入user_id,product_id
-	
+
 	const love_dict = {
 		user_id: req.body.user_id,
 		product_id: req.body.product_id
@@ -274,17 +274,17 @@ exports.getLoveProduct = (req, res) => {
 		  WHERE 
 		    product_id IN (?)
 		  GROUP BY 
-		    product_id
+		    product_id,image_url
 		) pi ON p.product_id = pi.product_id
 		LEFT JOIN user u ON p.user_id = u.user_id
 		WHERE 
 		  p.product_id IN (?)
 		`;
-		
+
 		// 注意：这里传递 idList 两次，一次用于 product_image 的查询，一次用于 product 的查询
 		database.query(sql1, [idList, idList], (err, result) => {
-		    if (err) res.cc(err);
-		    res.send(result);
+			if (err) res.cc(err);
+			res.send(result);
 		});
 
 
@@ -296,51 +296,97 @@ exports.cancelLoveProduct = (req, res) => {
 	database.query(sql, [req.body.user_id, req.body.product_id], (err, result) => {
 		if (err) res.cc(err)
 		res.send({
-			status:0,
-			message:'取消收藏成功'
+			status: 0,
+			message: '取消收藏成功'
 		})
 	})
 }
-exports.addOverview=(req,res)=>{
-	const sql='update  product set overview =overview + 1 where product_id = ?'
-	const pid=req.body.product_id;
-	database.query(sql,pid,(err,result)=>{
-		if(err)res.cc(err)
+exports.addOverview = (req, res) => {
+	const sql = 'update  product set overview =overview + 1 where product_id = ?'
+	const pid = req.body.product_id;
+	database.query(sql, pid, (err, result) => {
+		if (err) res.cc(err)
 		res.send({
-			status:0,
-			message:pid+'点击量+1'
+			status: 0,
+			message: pid + '点击量+1'
 		})
 	})
 }
-exports.userClick =(req,res)=>{
+exports.userClick = (req, res) => {
 	//查找是否已经点击过，有就更新时间，否则插入
-	const sql0="select * from user_click where user_id =? and product_id= ?"
-	database.query(sql0,[req.body.user_id,req.body.product_id],(error,results)=>{
-		if(error)return res.cc(error);
+	const sql0 = "select * from user_click where user_id =? and product_id= ?"
+	database.query(sql0, [req.body.user_id, req.body.product_id], (error, results) => {
+		if (error) return res.cc(error);
 		//console.log(results.length)
-		if(results.length>0){
-			const sql="update user_click set ? where user_id = ? and  product_id =?"
-			database.query(sql,[{click_time:new Date()},req.body.user_id,req.body.product_id],(err,result)=>{
-				if(err)return res.cc(err)
+		if (results.length > 0) {
+			const sql = "update user_click set ? where user_id = ? and  product_id =?"
+			database.query(sql, [{
+				click_time: new Date()
+			}, req.body.user_id, req.body.product_id], (err, result) => {
+				if (err) return res.cc(err)
 				res.send({
-					status:0,
-					message:'点击完成'
+					status: 0,
+					message: '点击完成'
 				})
 			})
-		}else{
-			const sql="insert into  user_click set ?"
-			const click_dict={
-				user_id:req.body.user_id,
-				product_id:req.body.product_id,
-				click_time:new Date()
+		} else {
+			const sql = "insert into  user_click set ?"
+			const click_dict = {
+				user_id: req.body.user_id,
+				product_id: req.body.product_id,
+				click_time: new Date()
 			}
-			database.query(sql,[click_dict],(err,result)=>{
-				if(err)return res.cc(err)
+			database.query(sql, [click_dict], (err, result) => {
+				if (err) return res.cc(err)
 				res.send({
-					status:0,
-					message:'点击完成'
+					status: 0,
+					message: '点击完成'
 				})
 			})
+		}
+	})
+}
+
+
+exports.getSpProduct = (req, res) => {
+	console.log('test')
+	const List = []
+	const min = 1;
+	const max = 285;
+	while (List.length <=12) {
+		let num = Math.floor(Math.random() * (max - min + 1)) + min;
+		// 检查随机数是否已经存在于数组中
+		if (!List.includes(num)) {
+			List.push(num);
+		}
+	}
+	console.log(List);
+
+	//会接入一个List放入一堆id
+	const sql = `
+        SELECT 
+            p.*,
+            pi.image_url
+        FROM 
+            product p
+		
+        LEFT JOIN (
+            SELECT 
+                product_id, 
+                MIN(image_id) AS min_image_id
+            FROM 
+                product_image
+            GROUP BY 
+                product_id
+        ) AS pi_min ON p.product_id = pi_min.product_id
+        LEFT JOIN product_image pi ON pi_min.product_id = pi.product_id AND pi_min.min_image_id = pi.image_id
+		WHERE p.stock_status = 1 and p.only_id IN (${List})
+    `
+	database.query(sql, (err, result) => {
+		if (err) res.cc(err);
+		else {
+			res.send(result)
+			//console.log(result)
 		}
 	})
 }

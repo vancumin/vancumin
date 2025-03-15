@@ -112,7 +112,7 @@ exports.getAllOrder = (req, res) => {
                 WHERE 
                     product_id IN (${idList})
                 GROUP BY 
-                    product_id
+                    product_id,image_url
             ) pi ON p.product_id = pi.product_id
             WHERE 
                 p.product_id IN (${idList})
@@ -195,7 +195,7 @@ exports.getUnPayOrder = (req, res) => {
                 WHERE 
                     product_id IN (${idList})
                 GROUP BY 
-                    product_id
+                    product_id,image_url
             ) pi ON p.product_id = pi.product_id
             WHERE 
                 p.product_id IN (${idList})
@@ -278,7 +278,7 @@ exports.getUnSendOrder = (req, res) => {
                 WHERE 
                     product_id IN (${idList})
                 GROUP BY 
-                    product_id
+                    product_id,image_url
             ) pi ON p.product_id = pi.product_id
             WHERE 
                 p.product_id IN (${idList})
@@ -361,7 +361,7 @@ exports.getUnReceiveOrder = (req, res) => {
                 WHERE 
                     product_id IN (${idList})
                 GROUP BY 
-                    product_id
+                    product_id,image_url
             ) pi ON p.product_id = pi.product_id
             WHERE 
                 p.product_id IN (${idList})
@@ -444,7 +444,7 @@ exports.getHasReceiveOrder = (req, res) => {
                 WHERE 
                     product_id IN (${idList})
                 GROUP BY 
-                    product_id
+                    product_id,image_url
             ) pi ON p.product_id = pi.product_id
             WHERE 
                 p.product_id IN (${idList})
