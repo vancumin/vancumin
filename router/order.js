@@ -1,0 +1,20 @@
+const express= require('express')
+const router =express.Router()
+
+const orderHandle=require('../router_handle/order')
+
+router.post('/createOrder',orderHandle.createOrder)
+router.post('/payOrder',orderHandle.payOrder)
+router.post('/sendOrder',orderHandle.sendOrder)
+router.post('/receiveOrder',orderHandle.receiveOrder)
+router.post('/getAllOrder',orderHandle.getAllOrder)
+router.post('/getUnPayOrder',orderHandle.getUnPayOrder)
+router.post('/getUnSendOrder',orderHandle.getUnSendOrder)
+router.post('/getUnReceiveOrder',orderHandle.getUnReceiveOrder)
+router.post('/getHasReceiveOrder',orderHandle.getHasReceiveOrder)
+router.post('/toPayOrder',orderHandle.toPayOrder)
+router.post('/toSendOrder',orderHandle.toSendOrder)
+router.post('/toReceiveOrder',orderHandle.toReceiveOrder)
+router.post('/cancelOrder',orderHandle.cancelOrder)
+router.post('/getOrderDetail',orderHandle.getOrderDetail)
+module.exports =router
